@@ -55,22 +55,7 @@ public class LightControl : MonoBehaviour
         }
         lightGameObject.SetActive(false);
     }
-    public void LightRunningoutofBattery()
-    {
-        lightGameObject.SetActive(false);
-        yield return new WaitForSeconds(0.3f);
-        lightGameObject.SetActive(true);
-        yield return new WaitForSeconds(0.3f);  
-        lightGameObject.SetActive(false);
-        yield return new WaitForSeconds(0.2f);
-        lightGameObject.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        lightGameObject.SetActive(false);
-        yield return new WaitForSeconds(0.1f);
-        lightGameObject.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        lightGameObject.SetActive(false);
-    }
+   
     public void SunLightOff()
     {
         SunLightGameObject.SetActive(false);
