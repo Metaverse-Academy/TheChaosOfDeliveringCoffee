@@ -3,13 +3,25 @@ using UnityEngine.InputSystem;
 using TMPro;
 using UnityEditor;
 using System;
+using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
 
+ [Header("UI Elements")]
+    public GameObject loadingBoxUI; 
+    public Image loadingProgressBar;
+
+    [Header("Bools")]
     private bool IsPlayerHoldTheMug = false;
+    private  bool isPlayerHoldFixItem = false;
     private bool IsCoffeMakerOn = false;
     private bool IsCoffeFill = false;
+    private bool isInteracting = false;
+    private float interactionTime = 2f; 
+    private float interactionTimer = 0f;
+    public GameObject fixItem;
+    private bool isCoffeNeedFixing = true;
     private bool TheMugOfThePlayerIsFill = false;
 
 
@@ -35,6 +47,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float scalePop = 1.1f;
     [SerializeField] private MugMNG mugMNG;
     private WorkerTable workerTable;
+    private dialogueSys dialogueSyss;
     private String RecentTag;
     private IInteractable currentTarget;
     private bool promptVisible;
@@ -50,9 +63,23 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
+
+
+if (isInteracting)
+        {
+            interactionTimer += Time.deltaTime;
+            loadingProgressBar.fillAmount = interactionTimer / interactionTime;
+            if (interactionTimer >= interactionTime)
+            {
+                CompleteInteraction();
+            }
+        }
+
+
+
         Debug.Log(IsPlayerHoldTheMug);
         Vector3 origin = cameraTransform.position;
-        Vector3 dir = cameraTransform.forward;        
+        Vector3 dir = cameraTransform.forward;
 
         if (Physics.Raycast(origin, dir, out RaycastHit hit, interactDistance, interactableLayer))
         {
@@ -64,12 +91,20 @@ public class PlayerInteraction : MonoBehaviour
                 {
 
                     workerTable = hit.collider.gameObject.GetComponent<WorkerTable>();
-
-
                 }
 
-
             }
+            else workerTable = null;
+             if (RecentTag == "Worker")
+            {
+
+                if (hit.collider.gameObject.GetComponent<dialogueSys>() != null)
+                {
+
+                    dialogueSyss = hit.collider.gameObject.GetComponent<dialogueSys>();
+                }
+            }
+
 
             if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
@@ -78,8 +113,16 @@ public class PlayerInteraction : MonoBehaviour
             }
             else HidePrompt();
         }
-        else HidePrompt();
 
+        else
+        {
+
+
+
+ workerTable = null;
+dialogueSyss = null;
+            HidePrompt();
+        }
         if (showDebugRay)
             Debug.DrawRay(origin, dir * interactDistance, currentTarget != null ? Color.green : Color.red);
     }
@@ -117,11 +160,30 @@ public class PlayerInteraction : MonoBehaviour
     {
 
 
+        if (RecentTag == null) return;
+        if (RecentTag == "FixItem" && IsPlayerHoldTheMug == false)
+        {
+            if (ctx.started)
+            {
+                fixItem.SetActive(true);
+                isPlayerHoldFixItem = true;
+                Debug.Log("Picked up fix item");
+            }
+        }
+        if (RecentTag == "CoffeeMaker" && isPlayerHoldFixItem == true && isCoffeNeedFixing == true)
+        {
+            if (ctx.started)
+            {
+                StartInteraction();
+            }
+        }
+
+
+
+
         if (RecentTag == "coffeeTable" && IsPlayerHoldTheMug == false)
         {
             if (ctx.started && mugMNG.isThereAvailableCubs == true)
-
-
             {
                 Debug.Log("eee");
 
@@ -134,7 +196,7 @@ public class PlayerInteraction : MonoBehaviour
             }
 
         }
-        else if (RecentTag == "CoffeeMaker" && IsCoffeMakerOn == false && IsPlayerHoldTheMug == true)
+        else if (RecentTag == "CoffeeMaker" && IsCoffeMakerOn == false && IsPlayerHoldTheMug == true && TheMugOfThePlayerIsFill == false)
         {
             if (ctx.started)
             {
@@ -148,6 +210,7 @@ public class PlayerInteraction : MonoBehaviour
 
 
         }
+
 
         else if (RecentTag == "CoffeeMaker" && IsCoffeFill == true && IsPlayerHoldTheMug == false)
         {
@@ -165,7 +228,7 @@ public class PlayerInteraction : MonoBehaviour
 
                 TheMugOfThePlayerIsFill = true;
                 CoffeStateAni.SetTrigger("FillTheMug");
-            CoffeStateAni.SetBool("TheMugOfThePlayerIsFill", TheMugOfThePlayerIsFill);
+                CoffeStateAni.SetBool("TheMugOfThePlayerIsFill", TheMugOfThePlayerIsFill);
 
             }
 
@@ -184,7 +247,7 @@ public class PlayerInteraction : MonoBehaviour
 
             }
         }
-        else if (RecentTag == "WorkerTable" && IsPlayerHoldTheMug==true &&TheMugOfThePlayerIsFill==true)
+        else if (RecentTag == "WorkerTable" && IsPlayerHoldTheMug == true && TheMugOfThePlayerIsFill == true && workerTable.TheTableReserved == false)
         {
 
             workerTable.TheWorkerGetTheCoffee();
@@ -196,13 +259,53 @@ public class PlayerInteraction : MonoBehaviour
 
 
         }
+        else if (RecentTag == "Worker" && dialogueSyss.IsDialogueAppear == false && IsPlayerHoldTheMug == false)
+        {
+            if (ctx.started)
+            {
+                dialogueSyss.AppearTheDialogue();
+                gameObject.GetComponent<PlayerMovement>().enabled=false;
+            }
+        }
+        else if (RecentTag == "Worker" && dialogueSyss.IsDialogueAppear == true && IsPlayerHoldTheMug == false)
+        {
+            if (ctx.started)
+            {
+                dialogueSyss.DisappearTheDialogue();
+                gameObject.GetComponent<PlayerMovement>().enabled=true;
+
+
+            }
+        }
     }
-    void TheCoffeeISready()
+
+        void TheCoffeeISready()
+        {
+
+            IsCoffeFill = true;
+
+
+
+        }
+    
+
+
+private void StartInteraction()
     {
-
-        IsCoffeFill = true;
-
-
-
+        isInteracting = true;
+        interactionTimer = 0f;
+        loadingBoxUI.SetActive(true); // Show the loading box
     }
+
+private void CompleteInteraction()
+    {
+        isInteracting = false;
+        loadingBoxUI.SetActive(false); // Hide the loading box
+        loadingProgressBar.fillAmount = 0f;
+
+        // Add your logic for what happens after interaction completes
+        Debug.Log("Interaction completed!");
+    }
+
+
 }

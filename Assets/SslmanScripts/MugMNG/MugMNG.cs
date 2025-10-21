@@ -9,17 +9,27 @@ public class MugMNG : MonoBehaviour
 
     [SerializeField] private GameObject MugOfTheCoffeeMaker;
     [SerializeField] private GameObject[] EmptyCup = new GameObject[2];
-    public bool isThereAvailableCubs=true;
-private int CountOfCupAvalibale =3 ;
+    public bool isThereAvailableCubs = true;
+    private int CountOfCupAvalibale = 3;
     void Awake()
     {
 
-                    PlayerMug.SetActive(false);
+        PlayerMug.SetActive(false);
 
-            MugOfTheCoffeeMaker.SetActive(false);
+        MugOfTheCoffeeMaker.SetActive(false);
 
     }
+    void Update()
+    {
+        if (CountOfCupAvalibale == 0)
+        {
 
+            isThereAvailableCubs = false;
+
+        }
+        else isThereAvailableCubs = true;
+
+    }
     public void activeMugOfPlayer(int state)
     {
         if (state == 1)
@@ -65,21 +75,28 @@ private int CountOfCupAvalibale =3 ;
     public void checkIfThereAnyEmptyCup()
     {
 
-        for (int i = 0; i < EmptyCup.Length ; i++)
+        for (int i = 0; i < EmptyCup.Length; i++)
         {
-
-            if (EmptyCup[i].activeInHierarchy == true)
 
             {
 
-                EmptyCup[i].SetActive(false);
-                isThereAvailableCubs = true;
-                break;
+                if (EmptyCup[i].activeInHierarchy == true && CountOfCupAvalibale != 0)
+
+                {
+
+                    EmptyCup[i].SetActive(false);
+                    CountOfCupAvalibale--;
+                    break;
+
+                }
+
+
+
+
+
+
 
             }
-            else isThereAvailableCubs =false;
-
-
         }
     }
 }
