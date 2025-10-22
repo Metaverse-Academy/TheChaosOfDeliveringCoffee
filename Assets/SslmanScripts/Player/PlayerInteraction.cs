@@ -118,7 +118,7 @@ if (isInteracting)
         {
 
 
-
+            RecentTag = "";
  workerTable = null;
 dialogueSyss = null;
             HidePrompt();
