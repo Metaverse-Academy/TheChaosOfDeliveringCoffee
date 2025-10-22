@@ -1,9 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class LightControl : MonoBehaviour
 {
-   public GameObject lightGameObject;
-   public GameObject SunLightGameObject;
+    public GameObject lightGameObject;
+    public GameObject KitchenLightGameObject;
+   public Light kitchenLight;
+    public GameObject SunLightGameObject;
+    private Coroutine flickerCoroutine;
+   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,29 +26,18 @@ public class LightControl : MonoBehaviour
 
     public void LightActivcate()
     {
+        if (flickerCoroutine != null)
+        {
+            StopCoroutine(flickerCoroutine);
+            flickerCoroutine = null;
+        }
         lightGameObject.SetActive(true);
     }
     public void LightDeactivcate()
     {
         lightGameObject.SetActive(false);
     }
-    public void LightRandom()
-    {
-        while (true) 
-        {
-        int randomNum = Random.Range(0, 2); 
-
-        if (randomNum == 0)
-        {
-            lightGameObject.SetActive(true);
-        }
-        else
-        {
-            lightGameObject.SetActive(false);
-        }
-        yield return new WaitForSeconds(3f);
-        }
-    }
+  
 
     public IEnumerator LightRunningOutOfBattery()
     {
@@ -63,6 +57,10 @@ public class LightControl : MonoBehaviour
     public void SunLightOn()
     {
         SunLightGameObject.SetActive(true);
+    }
+    public void KitchenLightControl()
+    {
+        
     }
 
 }
