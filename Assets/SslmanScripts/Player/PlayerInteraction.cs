@@ -77,7 +77,6 @@ if (isInteracting)
 
 
 
-        Debug.Log(IsPlayerHoldTheMug);
         Vector3 origin = cameraTransform.position;
         Vector3 dir = cameraTransform.forward;
 
@@ -264,7 +263,7 @@ dialogueSyss = null;
             if (ctx.started)
             {
                 dialogueSyss.AppearTheDialogue();
-                gameObject.GetComponent<PlayerMovement>().enabled=false;
+                gameObject.GetComponent<PlayerMovement>().enabled = false;
             }
         }
         else if (RecentTag == "Worker" && dialogueSyss.IsDialogueAppear == true && IsPlayerHoldTheMug == false)
@@ -272,8 +271,20 @@ dialogueSyss = null;
             if (ctx.started)
             {
                 dialogueSyss.DisappearTheDialogue();
-                gameObject.GetComponent<PlayerMovement>().enabled=true;
+                gameObject.GetComponent<PlayerMovement>().enabled = true;
 
+
+            }
+        }
+        
+         else if (RecentTag == "CleaningSink" &&  IsPlayerHoldTheMug == true )
+        {
+            if (ctx.started)
+            {
+                mugMNG.activeMugOfPlayer(2);
+                mugMNG.ResetTheMug();
+                IsPlayerHoldTheMug = false;
+                TheMugOfThePlayerIsFill = false;
 
             }
         }

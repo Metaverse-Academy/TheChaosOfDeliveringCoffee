@@ -10,6 +10,7 @@ TagManager:
   - coffeeTable
   - BTN
   - Worker
+  - CleaningSink
   layers:
   - Default
   - TransparentFX
