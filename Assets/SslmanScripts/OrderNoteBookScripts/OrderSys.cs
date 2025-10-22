@@ -7,46 +7,47 @@ public class OrderSys : MonoBehaviour
 
     [SerializeField] private TMP_Text theOrder;
     [SerializeField] private TMP_Text nameOfTheWorker;
-
+    [SerializeField] private AudioSource AudioSourceOfOrder;
+    [SerializeField] private AudioClip TheAlarmSound;
+    public bool IsPlayerREadTheOrder;
 
     //--------Start examples
 
     float RecentTime;
-    int ChangeTheText=1;
+    int ChangeTheText = 1;
+
+    void Start()
+    {
+        AddNewOrder("1 cup of coffee","James",1);
+
+
+
+    }
+
     void Update()
     {
-        RecentTime += Time.deltaTime;
-        if (RecentTime > 3)
-        {
-            RecentTime = 0;
 
 
-            if (ChangeTheText == 1)
+        if (IsPlayerREadTheOrder =false) {
+
+
+            RecentTime += Time.deltaTime;
+            if (RecentTime > 3)
             {
-                AddNewOrder("Please i want 1 cup of coffee", "Salman", 1);
-                ChangeTheText++;
-            }
-            else if (ChangeTheText == 2)
-            {
-                AddNewOrder("I neet extra cup of coffee", "Fares", 1);
-                ChangeTheText++;
-            }
-  else if (ChangeTheText == 3)
-            {
-                AddNewOrder("Harry up i need my coffee", "Almajd", 1);
-                ChangeTheText=1;
-            }
+                RecentTime = 0;
+                AddNewOrder("","",2);
 
+                Debug.Log("rnrnrnrn");
 
-
-        }
+            } 
+            }
 
 //End of the example --------------------
 
 
     }
 
-    
+
 
 
 
@@ -61,8 +62,8 @@ public class OrderSys : MonoBehaviour
         {
             theOrder.text = orderDetail;
             nameOfTheWorker.text = nameOfTheWorkerMeth;
-
-
+            AudioSourceOfOrder.PlayOneShot(TheAlarmSound);
+            IsPlayerREadTheOrder = false;
 
 
         }
@@ -70,10 +71,20 @@ public class OrderSys : MonoBehaviour
         else if (stateOfOrder == 2)
         {
 
+            AudioSourceOfOrder.PlayOneShot(TheAlarmSound);
 
 
 
         }
+
+
+    }
+
+    public void setIsPlayerREadTheORder()
+    {
+
+        IsPlayerREadTheOrder = true;
+
 
 
     }
