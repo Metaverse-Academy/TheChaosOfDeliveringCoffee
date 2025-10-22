@@ -17,7 +17,7 @@ public class CameraRangeDetecetSys : MonoBehaviour
         if (IsTargetvisible)
         {
 
-            Debug.Log("is inside the camera");
+            Debug.Log("Target inside the camera");
 
 
         }
