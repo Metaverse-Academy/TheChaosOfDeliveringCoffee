@@ -226,8 +226,8 @@ dialogueSyss = null;
                 IsCoffeMakerOn = false;
 
                 TheMugOfThePlayerIsFill = true;
-                CoffeStateAni.SetTrigger("FillTheMug");
-                CoffeStateAni.SetBool("TheMugOfThePlayerIsFill", TheMugOfThePlayerIsFill);
+                //CoffeStateAni.SetTrigger("FillTheMug");
+                //CoffeStateAni.SetBool("TheMugOfThePlayerIsFill", TheMugOfThePlayerIsFill);
 
             }
 
