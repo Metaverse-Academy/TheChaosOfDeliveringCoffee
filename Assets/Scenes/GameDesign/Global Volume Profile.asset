@@ -62,12 +62,12 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.899492, z: 0.87457657, w: 0}
+    m_Value: {x: 1, y: 0.98003286, z: 0.9537755, w: 0}
   gamma:
     m_OverrideState: 0
     m_Value: {x: 0.9169005, y: 1, z: 0.9370301, w: 0}
   gain:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {x: 1, y: 0.94920385, z: 0.94027185, w: 0}
 --- !u!114 &-7207486880076775719
 MonoBehaviour:
@@ -84,10 +84,10 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.63
+    m_Value: -0.07
   contrast:
     m_OverrideState: 1
-    m_Value: -10
+    m_Value: 9.3
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -95,7 +95,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   saturation:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
 --- !u!114 &-6001172530269086793
 MonoBehaviour:
@@ -137,10 +137,10 @@ MonoBehaviour:
   active: 1
   type:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.358
+    m_Value: 0.098
   response:
     m_OverrideState: 0
     m_Value: 0.8
@@ -221,11 +221,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.ShadowsMidtonesHighlights
   active: 1
   shadows:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.94902736, y: 0.99461347, z: 1, w: 0}
   midtones:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 0.86925226, y: 1, z: 0.867689, w: 0}
   highlights:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
