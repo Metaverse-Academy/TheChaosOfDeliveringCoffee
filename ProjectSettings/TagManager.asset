@@ -11,6 +11,7 @@ TagManager:
   - BTN
   - Worker
   - CleaningSink
+  - FixItem
   layers:
   - Default
   - TransparentFX

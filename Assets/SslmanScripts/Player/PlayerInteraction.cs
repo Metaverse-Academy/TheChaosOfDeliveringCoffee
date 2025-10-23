@@ -52,6 +52,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private MugMNG mugMNG;
     private WorkerTable workerTable;
     private dialogueSys dialogueSyss;
+    public GameObject worker;
     private String RecentTag;
     private IInteractable currentTarget;
     private bool promptVisible;
@@ -68,6 +69,8 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         Debug.Log(IsPlayerHoldTheMug);
+        Debug.Log(PlayerAfraid);
+        Debug.Log(isMachineBroken);
 
 if (isInteracting)
         {
@@ -87,6 +90,7 @@ if (isInteracting)
         if (Physics.Raycast(origin, dir, out RaycastHit hit, interactDistance, interactableLayer))
         {
             RecentTag = hit.collider.tag;
+            Debug.Log(RecentTag);
 
 
             if (RecentTag == "coffeeTable" && IsPlayerHoldTheMug == false)
@@ -222,15 +226,17 @@ dialogueSyss = null;
 
 
         if (RecentTag == null) return;
-        if (RecentTag == "FixItem" && IsPlayerHoldTheMug == false &&PlayerAfraid==false &&isMachineBroken==false)
+        if (RecentTag == "FixItem" && IsPlayerHoldTheMug == false &&PlayerAfraid==false &&isMachineBroken==true)
         {
             if (ctx.started)
             {
                 fixItem.SetActive(true);
                 isPlayerHoldFixItem = true;
+                worker.gameObject.SetActive(true);
+                Debug.Log("Picked up the fix item");
             }
         }
-        if (RecentTag == "CoffeeMaker" && isPlayerHoldFixItem == true && isCoffeNeedFixing == true&&PlayerAfraid==false&&isMachineBroken==false)
+        if (RecentTag == "CoffeeMaker" && isPlayerHoldFixItem == true && isCoffeNeedFixing == true&&PlayerAfraid==false&&isMachineBroken==true)
         {
             if (ctx.started)
             {
@@ -393,6 +399,10 @@ private void CompleteInteraction()
         isInteracting = false;
         loadingBoxUI.SetActive(false); // Hide the loading box
         loadingProgressBar.fillAmount = 0f;
+        fixItem.SetActive(false);
+        isPlayerHoldFixItem = false;
+        isMachineBroken = false;
+        isCoffeNeedFixing = false;
 
         // Add your logic for what happens after interaction completes
         Debug.Log("Interaction completed!");

@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class OrderSys : MonoBehaviour
@@ -32,11 +33,15 @@ public class OrderSys : MonoBehaviour
 
     void Update()
     {
-        if (OrderState == 4&&toPlayOnTime==true)
+        if (OrderState == 4 && toPlayOnTime == true)
         {
             playerInteraction.isMachineBroken = true;
             toPlayOnTime = false;
 
+        }
+        if(OrderState == 5 )
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Credits");
         }
 
         if (IsPlayerREadTheOrder ==false) {
