@@ -4,6 +4,8 @@ using TMPro;
 using UnityEditor;
 using System;
 using UnityEngine.UI;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     private bool IsPlayerHoldTheMug = false;
     private  bool isPlayerHoldFixItem = false;
     private bool IsCoffeMakerOn = false;
+    private bool done = false;
     private bool IsCoffeFill = false;
     private bool isInteracting = false;
     private float interactionTime = 2f; 
@@ -51,8 +54,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float scalePop = 1.1f;
     [SerializeField] private MugMNG mugMNG;
     private WorkerTable workerTable;
-    private dialogueSys dialogueSyss;
-    public GameObject worker;
+    [SerializeField] GameObject di;
+     public GameObject worker;
     private String RecentTag;
     private IInteractable currentTarget;
     private bool promptVisible;
@@ -162,11 +165,7 @@ if (isInteracting)
              if (RecentTag == "Worker")
             {
 
-                if (hit.collider.gameObject.GetComponent<dialogueSys>() != null)
-                {
-
-                    dialogueSyss = hit.collider.gameObject.GetComponent<dialogueSys>();
-                }
+                
             }
 
 
@@ -185,7 +184,7 @@ if (isInteracting)
 
             RecentTag = "";
  workerTable = null;
-dialogueSyss = null;
+//dialogueSyss = null;
             HidePrompt();
         }
         if (showDebugRay)
@@ -223,10 +222,6 @@ dialogueSyss = null;
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if(RecentTag=="FinalWorkers")
-        {
-            Debug.Log("Game Finished");
-        }
 
 
         if (RecentTag == null) return;
@@ -251,7 +246,7 @@ dialogueSyss = null;
 
 
 
-        if (RecentTag == "coffeeTable" && IsPlayerHoldTheMug == false && PlayerAfraid == false&&isMachineBroken==false)
+        if (RecentTag == "coffeeTable" && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == false)
         {
             if (ctx.started && mugMNG.isThereAvailableCubs == true)
             {
@@ -265,7 +260,7 @@ dialogueSyss = null;
             }
 
         }
-        else if (RecentTag == "CoffeeMaker" && IsCoffeMakerOn == false && IsPlayerHoldTheMug == true && TheMugOfThePlayerIsFill == false && PlayerAfraid == false&&isMachineBroken==false)
+        else if (RecentTag == "CoffeeMaker" && IsCoffeMakerOn == false && IsPlayerHoldTheMug == true && TheMugOfThePlayerIsFill == false && PlayerAfraid == false && isMachineBroken == false)
         {
             if (ctx.started)
             {
@@ -281,7 +276,7 @@ dialogueSyss = null;
         }
 
 
-        else if (RecentTag == "CoffeeMaker" && IsCoffeFill == true && IsPlayerHoldTheMug == false && PlayerAfraid == false&&isMachineBroken==false)
+        else if (RecentTag == "CoffeeMaker" && IsCoffeFill == true && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == false)
         {
             if (ctx.started)
             {
@@ -304,7 +299,7 @@ dialogueSyss = null;
 
         }
 
-        else if (RecentTag == "BTN" && IsCoffeMakerOn == true && IsPlayerHoldTheMug == false && PlayerAfraid == false&&isMachineBroken==false)
+        else if (RecentTag == "BTN" && IsCoffeMakerOn == true && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == false)
         {
             if (ctx.started)
             {
@@ -316,38 +311,36 @@ dialogueSyss = null;
 
             }
         }
-        else if (RecentTag == "WorkerTable" && IsPlayerHoldTheMug == true && TheMugOfThePlayerIsFill == true && workerTable.TheTableReserved == false && PlayerAfraid == false&&isMachineBroken==false)
+        else if (RecentTag == "WorkerTable" && IsPlayerHoldTheMug == true && TheMugOfThePlayerIsFill == true && workerTable.TheTableReserved == false && PlayerAfraid == false && isMachineBroken == false)
         {
 
             workerTable.TheWorkerGetTheCoffee();
             mugMNG.activeMugOfPlayer(2);
             TheMugOfThePlayerIsFill = false;
             IsPlayerHoldTheMug = false;
+            
             CoffeStateAni.SetBool("TheMugOfThePlayerIsFill", TheMugOfThePlayerIsFill);
 
 
 
         }
-        else if (RecentTag == "Worker" && dialogueSyss.IsDialogueAppear == false && IsPlayerHoldTheMug == false && PlayerAfraid == false&&isMachineBroken==false)
+        else if (RecentTag == "Worker")
         {
-            if (ctx.started)
-            {
-                dialogueSyss.AppearTheDialogue();
-                gameObject.GetComponent<PlayerMovement>().enabled = false;
-            }
+            di.SetActive(true);
+            done = true;
+            Invoke("Done", 7);
+
+
         }
-        else if (RecentTag == "Worker" && dialogueSyss.IsDialogueAppear == true && IsPlayerHoldTheMug == false && PlayerAfraid == false&&isMachineBroken==false)
+else if (RecentTag == "Worker" && done == true)
         {
-            if (ctx.started)
-            {
-                dialogueSyss.DisappearTheDialogue();
-                gameObject.GetComponent<PlayerMovement>().enabled = true;
+            di.SetActive(false);
+           
 
 
-            }
         }
 
-        else if (RecentTag == "CleaningSink" && IsPlayerHoldTheMug == true && PlayerAfraid == false&&isMachineBroken==false)
+        else if (RecentTag == "CleaningSink" && IsPlayerHoldTheMug == true && PlayerAfraid == false && isMachineBroken == false)
         {
             if (ctx.started)
             {
@@ -358,10 +351,11 @@ dialogueSyss = null;
 
             }
         }
-        else if (RecentTag == "BTN" && PlayerAfraid==true)
+        else if (RecentTag == "BTN" && PlayerAfraid == true)
         {
             if (ctx.started)
-            {                                Bottun.SetTrigger("BTN");
+            {
+                Bottun.SetTrigger("BTN");
 
                 PressWhileAfraid++;
 
@@ -376,7 +370,7 @@ dialogueSyss = null;
 
 
             }
-           
+
         }
     }
 
@@ -398,7 +392,7 @@ private void StartInteraction()
         loadingBoxUI.SetActive(true); // Show the loading box
     }
 
-private void CompleteInteraction()
+    private void CompleteInteraction()
     {
         isInteracting = false;
         loadingBoxUI.SetActive(false); // Hide the loading box
@@ -410,6 +404,10 @@ private void CompleteInteraction()
 
         // Add your logic for what happens after interaction completes
         Debug.Log("Interaction completed!");
+    }
+    private void Done()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
 
