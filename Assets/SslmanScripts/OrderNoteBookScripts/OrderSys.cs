@@ -10,6 +10,7 @@ public class OrderSys : MonoBehaviour
     [SerializeField] private TMP_Text nameOfTheWorker;
     [SerializeField] private AudioSource AudioSourceOfOrder;
     [SerializeField] private AudioClip TheAlarmSound;
+    public GameObject finalWorker;
     public bool IsPlayerREadTheOrder;
     [SerializeField] private String[] orderDetail = new string[8];
     [SerializeField] private String[] nameOfTheWorkerMeth = new string[8];
@@ -41,7 +42,7 @@ public class OrderSys : MonoBehaviour
         }
         if(OrderState == 5 )
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Credits");
+            finalWorker.gameObject.SetActive(true);
         }
 
         if (IsPlayerREadTheOrder ==false) {

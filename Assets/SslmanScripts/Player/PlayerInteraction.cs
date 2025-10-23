@@ -223,6 +223,10 @@ dialogueSyss = null;
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
+        if(RecentTag=="FinalWorkers")
+        {
+            Debug.Log("Game Finished");
+        }
 
 
         if (RecentTag == null) return;
