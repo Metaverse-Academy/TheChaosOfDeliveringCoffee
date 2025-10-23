@@ -4,27 +4,21 @@ using UnityEngine;
 
 public class OrderSys : MonoBehaviour
 {
-    [SerializeField] private PlayerInteraction playerInteraction;
+
     [SerializeField] private TMP_Text theOrder;
     [SerializeField] private TMP_Text nameOfTheWorker;
     [SerializeField] private AudioSource AudioSourceOfOrder;
     [SerializeField] private AudioClip TheAlarmSound;
     public bool IsPlayerREadTheOrder;
-    [SerializeField] private String[] orderDetail = new string[8];
-    [SerializeField] private String[] nameOfTheWorkerMeth = new string[8];
-        [SerializeField] private BoxCollider[] OffceCollider = new BoxCollider[8];
 
-
-    bool toPlayOnTime=true;
-    public int OrderState = 0;
+    //--------Start examples
 
     float RecentTime;
     int ChangeTheText = 1;
 
     void Start()
     {
-        AddNewOrder(1);
-            activeOnlyTheOne(0);
+        AddNewOrder("1 cup of coffee","James",1);
 
 
 
@@ -32,25 +26,23 @@ public class OrderSys : MonoBehaviour
 
     void Update()
     {
-        if (OrderState == 4&&toPlayOnTime==true)
-        {
-            playerInteraction.isMachineBroken = true;
-            toPlayOnTime = false;
 
-        }
 
-        if (IsPlayerREadTheOrder ==false) {
+        if (IsPlayerREadTheOrder =false) {
 
 
             RecentTime += Time.deltaTime;
-            if (RecentTime > 8)
+            if (RecentTime > 3)
             {
                 RecentTime = 0;
-                AddNewOrder(2);
+                AddNewOrder("","",2);
 
+                Debug.Log("rnrnrnrn");
 
             } 
             }
+
+//End of the example --------------------
 
 
     }
@@ -60,7 +52,7 @@ public class OrderSys : MonoBehaviour
 
 
 
-    public void AddNewOrder( int stateOfOrder)
+    public void AddNewOrder(String orderDetail, String nameOfTheWorkerMeth, int stateOfOrder)
     {
 
 
@@ -68,12 +60,11 @@ public class OrderSys : MonoBehaviour
 
         if (stateOfOrder == 1)
         {
-            theOrder.text = orderDetail[OrderState];
-            nameOfTheWorker.text = nameOfTheWorkerMeth[OrderState];
+            theOrder.text = orderDetail;
+            nameOfTheWorker.text = nameOfTheWorkerMeth;
             AudioSourceOfOrder.PlayOneShot(TheAlarmSound);
             IsPlayerREadTheOrder = false;
-            activeOnlyTheOne(OrderState);
-            OrderState++;
+
 
         }
 
@@ -81,6 +72,7 @@ public class OrderSys : MonoBehaviour
         {
 
             AudioSourceOfOrder.PlayOneShot(TheAlarmSound);
+
 
 
         }
@@ -96,16 +88,5 @@ public class OrderSys : MonoBehaviour
 
 
     }
-    void activeOnlyTheOne(int x)
-    {
-        for (int i = 0; i <= 7; i++)
-        {
 
-            OffceCollider[i].enabled = false;
-        }
-        OffceCollider[x].enabled = true;
-
-
-
-    }
 }

@@ -12,19 +12,13 @@ public class WorkerTable : MonoBehaviour
     {
         if (TheTableReserved == false)
         {
-            MugOfTheWorker.SetActive(true);
+                    MugOfTheWorker.SetActive(true);
             TheTableReserved = true;
-            orderSys.AddNewOrder(1);
+            orderSys.AddNewOrder("i need more cup ","Michael",1);
 
         }
 
 
-
-    }
-    public void ResetIt()
-    {
-                    TheTableReserved = false;
-            MugOfTheWorker.SetActive(false);
 
     }
 }

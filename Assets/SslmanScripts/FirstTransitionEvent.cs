@@ -11,7 +11,6 @@ public class FirstTransitionEvent : MonoBehaviour
         if (other.CompareTag("Player")&&playerInteraction.isMachineBroken==true)
         {
 
-            Debug.Log("someoneBehindYou");
 
 
         }
