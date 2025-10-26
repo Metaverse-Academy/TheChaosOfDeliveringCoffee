@@ -12,6 +12,8 @@ TagManager:
   - Worker
   - CleaningSink
   - FixItem
+  - Final Worker
+  - FinalWorkers
   layers:
   - Default
   - TransparentFX
