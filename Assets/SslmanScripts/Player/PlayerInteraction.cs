@@ -31,6 +31,10 @@ public class PlayerInteraction : MonoBehaviour
 
     private int PressWhileAfraid=0;
 
+
+
+
+    [SerializeField] private TransitionMNGscripts transitionMNGscripts;
     [SerializeField] private Image CenterDot;
 
     [SerializeField] private Animator coffee;
@@ -54,6 +58,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float scalePop = 1.1f;
     [SerializeField] private MugMNG mugMNG;
     private WorkerTable workerTable;
+    //dialogue = di
     [SerializeField] GameObject di;
      public GameObject worker;
     private String RecentTag;
@@ -71,9 +76,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(IsPlayerHoldTheMug);
-        Debug.Log(PlayerAfraid);
-        Debug.Log(isMachineBroken);
+      
 
 if (isInteracting)
         {
@@ -389,7 +392,10 @@ private void StartInteraction()
     {
         isInteracting = true;
         interactionTimer = 0f;
-        loadingBoxUI.SetActive(true); // Show the loading box
+        loadingBoxUI.SetActive(true);
+
+        //here the transition to shfit2 start
+        transitionMNGscripts.TransitionToShift2();
     }
 
     private void CompleteInteraction()
