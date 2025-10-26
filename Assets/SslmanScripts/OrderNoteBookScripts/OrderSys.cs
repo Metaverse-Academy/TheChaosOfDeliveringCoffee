@@ -39,9 +39,10 @@ public class OrderSys : MonoBehaviour
             toPlayOnTime = false;
 
         }
-       
 
-        if (IsPlayerREadTheOrder ==false) {
+
+        if (IsPlayerREadTheOrder == false)
+        {
 
 
             RecentTime += Time.deltaTime;
@@ -51,10 +52,10 @@ public class OrderSys : MonoBehaviour
                 AddNewOrder(2);
 
 
-            } 
             }
+        }
 
-
+        Debug.Log(OrderState);
     }
 
 
