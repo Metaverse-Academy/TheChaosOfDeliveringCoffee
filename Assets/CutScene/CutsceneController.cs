@@ -116,3 +116,4 @@ public class CutsceneController : MonoBehaviour
         bottomBar.gameObject.SetActive(false);
     }
 }
+
