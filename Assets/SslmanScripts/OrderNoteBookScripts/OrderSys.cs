@@ -55,7 +55,6 @@ public class OrderSys : MonoBehaviour
             }
         }
 
-        Debug.Log(OrderState);
     }
 
 

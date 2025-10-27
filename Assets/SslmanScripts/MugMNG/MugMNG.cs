@@ -6,6 +6,8 @@ public class MugMNG : MonoBehaviour
 {
 
     [SerializeField] private GameObject PlayerMug;
+    [SerializeField] private GameObject MugFillWithCoffeeOnTheCoffeeMaker;
+    [SerializeField] private GameObject MugFillWithCoffeeOnPlayerHand;
 
     [SerializeField] private GameObject MugOfTheCoffeeMaker;
     [SerializeField] public GameObject[] EmptyCup = new GameObject[2];
@@ -42,6 +44,9 @@ public class MugMNG : MonoBehaviour
         {
 
             PlayerMug.SetActive(true);
+            MugFillWithCoffeeOnPlayerHand.SetActive(false);
+
+
             if (CountOfCupAvalibale == 2)
             {
 
@@ -53,10 +58,17 @@ public class MugMNG : MonoBehaviour
         {
 
             PlayerMug.SetActive(false);
+            MugFillWithCoffeeOnPlayerHand.SetActive(false);
 
 
         }
+else if (state == 3)
+        {
 
+            PlayerMug.SetActive(false);
+            MugFillWithCoffeeOnPlayerHand.SetActive(true);
+
+        }
 
 
     }
@@ -68,6 +80,7 @@ public class MugMNG : MonoBehaviour
         {
 
             MugOfTheCoffeeMaker.SetActive(true);
+            MugFillWithCoffeeOnTheCoffeeMaker.SetActive(false);
 
 
         }
@@ -75,7 +88,15 @@ public class MugMNG : MonoBehaviour
         {
 
             MugOfTheCoffeeMaker.SetActive(false);
+            MugFillWithCoffeeOnTheCoffeeMaker.SetActive(false);
 
+
+        }
+           else if (state == 3)
+        {
+
+            MugOfTheCoffeeMaker.SetActive(false);
+            MugFillWithCoffeeOnTheCoffeeMaker.SetActive(true);
 
         }
 
