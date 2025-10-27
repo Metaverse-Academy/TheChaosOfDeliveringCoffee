@@ -10,6 +10,9 @@ public class firstEventCoffeeMaker : MonoBehaviour
     [SerializeField] private PlayerInteraction playerInteraction;
 
 
+[SerializeField] private AudioSource coffeeSound;
+    [SerializeField] private AudioClip coffeeMachineLoop;
+    [SerializeField] private AudioClip coffeeMachineNormal;
 
 
 
@@ -23,6 +26,11 @@ public class firstEventCoffeeMaker : MonoBehaviour
             StartAfraid.enabled = true;
             playerInteraction.PlayerAfraid = true;
 
+coffeeSound.loop = true;
+            coffeeSound.clip = coffeeMachineLoop;
+            coffeeSound.Play();
+
+
         }
     }
     public void TheFearGone()
@@ -31,7 +39,10 @@ public class firstEventCoffeeMaker : MonoBehaviour
         theCoffeeMakerAni.SetBool("WeirdThingDone", false);
             StartAfraid.enabled = false;
             playerInteraction.PlayerAfraid = false;
+coffeeSound.clip = coffeeMachineNormal;
+        coffeeSound.loop = false;
 
+        coffeeSound.Stop();
 
 
     }

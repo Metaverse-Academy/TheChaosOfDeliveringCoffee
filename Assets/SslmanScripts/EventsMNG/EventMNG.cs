@@ -19,6 +19,15 @@ public class EventMNG : MonoBehaviour
     [SerializeField] private AudioClip PowerOn;
 
 
+
+
+    //MNGOfficeEvent
+    [SerializeField] private Animator MNGOfficeDoor;
+    [SerializeField] private Animator MettingOfficeDoor;
+
+    
+
+
     //to be sure the event run one time 
     bool IsSoundEvent =false;
     bool IsLightEvent = false;

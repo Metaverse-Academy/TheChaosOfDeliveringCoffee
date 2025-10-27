@@ -302,11 +302,11 @@ if (isInteracting)
 
         }
 
-        else if (RecentTag == "BTN" && IsCoffeMakerOn == true && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == false&&PlayerPressBtn==false)
+        else if (RecentTag == "BTN" && IsCoffeMakerOn == true && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == false && PlayerPressBtn == false)
         {
             if (ctx.started)
             {
-                        mugMNG.activeMugOfCoffeeMaker(3);
+                mugMNG.activeMugOfCoffeeMaker(3);
 
                 coffee.SetTrigger("OnBTNPress");
                 TheMugFill.SetTrigger("FillTheMug");
@@ -324,7 +324,7 @@ if (isInteracting)
             mugMNG.activeMugOfPlayer(2);
             TheMugOfThePlayerIsFill = false;
             IsPlayerHoldTheMug = false;
-            
+
             CoffeStateAni.SetBool("TheMugOfThePlayerIsFill", TheMugOfThePlayerIsFill);
 
 
@@ -338,10 +338,10 @@ if (isInteracting)
 
 
         }
-else if (RecentTag == "Worker" && done == true)
+        else if (RecentTag == "Worker" && done == true)
         {
             di.SetActive(false);
-           
+
 
 
         }
@@ -357,8 +357,11 @@ else if (RecentTag == "Worker" && done == true)
 
             }
         }
+
         else if (RecentTag == "BTN" && PlayerAfraid == true)
         {
+
+            
             if (ctx.started)
             {
                 Bottun.SetTrigger("BTN");
