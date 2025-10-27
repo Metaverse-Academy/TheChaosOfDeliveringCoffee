@@ -33,7 +33,7 @@ public class PlayerInteraction : MonoBehaviour
 
 
 
-
+    [SerializeField] private Animator TheMugFill;
     [SerializeField] private TransitionMNGscripts transitionMNGscripts;
     [SerializeField] private Image CenterDot;
 
@@ -64,9 +64,10 @@ public class PlayerInteraction : MonoBehaviour
     private String RecentTag;
     private IInteractable currentTarget;
     private bool promptVisible;
-
+   private bool PlayerPressBtn =false;
     private void Awake()
     {
+
         if (promptCanvas)
         {
             promptCanvas.alpha = 0f;
@@ -96,7 +97,6 @@ if (isInteracting)
         if (Physics.Raycast(origin, dir, out RaycastHit hit, interactDistance, interactableLayer))
         {
             RecentTag = hit.collider.tag;
-            Debug.Log(RecentTag);
 
 
             if (RecentTag == "coffeeTable" && IsPlayerHoldTheMug == false)
@@ -285,8 +285,8 @@ if (isInteracting)
             {
 
                 mugMNG.activeMugOfCoffeeMaker(2);
-                mugMNG.activeMugOfPlayer(1);
-
+                mugMNG.activeMugOfPlayer(3);
+                PlayerPressBtn = false;
 
                 IsCoffeFill = false;
 
@@ -302,13 +302,16 @@ if (isInteracting)
 
         }
 
-        else if (RecentTag == "BTN" && IsCoffeMakerOn == true && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == false)
+        else if (RecentTag == "BTN" && IsCoffeMakerOn == true && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == false&&PlayerPressBtn==false)
         {
             if (ctx.started)
             {
+                        mugMNG.activeMugOfCoffeeMaker(3);
 
                 coffee.SetTrigger("OnBTNPress");
+                TheMugFill.SetTrigger("FillTheMug");
 
+                PlayerPressBtn = true;
                 Invoke("TheCoffeeISready", 7);
                 Bottun.SetTrigger("BTN");
 
