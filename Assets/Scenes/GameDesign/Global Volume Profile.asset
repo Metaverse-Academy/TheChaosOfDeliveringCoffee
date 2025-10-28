@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Value: 0.7
   intensity:
     m_OverrideState: 1
-    m_Value: 0.12
+    m_Value: 0.97
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
@@ -62,7 +62,7 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.956831, z: 0.98490036, w: 0}
+    m_Value: {x: 1, y: 0.956831, z: 0.98490036, w: -7.490274e-10}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 0.865047, y: 1, z: 0.9170714, w: 0}
@@ -84,19 +84,19 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: -0.94
+    m_Value: 0.94
   contrast:
     m_OverrideState: 1
-    m_Value: -10
+    m_Value: 3.76
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: -4.1
+    m_Value: 3.08
 --- !u!114 &-6400888888727516557
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -111,17 +111,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.Vignette
   active: 1
   color:
-    m_OverrideState: 0
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.9748427, g: 0.9748427, b: 0.9748427, a: 1}
   center:
     m_OverrideState: 0
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.425
+    m_Value: 0.42
   smoothness:
-    m_OverrideState: 0
-    m_Value: 0.2
+    m_OverrideState: 1
+    m_Value: 0.346
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.052
+    m_Value: 0.1
   clamp:
     m_OverrideState: 0
     m_Value: 0.05
@@ -168,7 +168,7 @@ MonoBehaviour:
     m_Value: 8
   intensity:
     m_OverrideState: 1
-    m_Value: 0.127
+    m_Value: 0.151
   response:
     m_OverrideState: 1
     m_Value: 0.315
@@ -251,7 +251,7 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.80842626, z: 0.81649125, w: -0.03790272}
+    m_Value: {x: 1, y: 0.9208639, z: 0.87526155, w: -0.021602865}
   midtones:
     m_OverrideState: 0
     m_Value: {x: 0.9160339, y: 0.9446387, z: 1, w: 0}

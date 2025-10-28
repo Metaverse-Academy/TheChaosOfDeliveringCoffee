@@ -1,0 +1,20 @@
+{
+    "asset": "5e8be517ab287114fb98d2301543d131",
+    "fileName": "019a2b95-f33b-73c4-b74a-71d7cde1ca38.png",
+    "prompt": "Single Spark Yellow \nmake it single \n",
+    "negativePrompt": "",
+    "model": "5b5b2af1-6ea4-4266-b087-cc9f3bf4f450",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "d9ce1b28ef0c9153fc29c0143fe39652",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}
