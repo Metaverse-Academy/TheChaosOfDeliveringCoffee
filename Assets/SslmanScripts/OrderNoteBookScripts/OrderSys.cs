@@ -33,6 +33,8 @@ public class OrderSys : MonoBehaviour
 
     void Update()
     {
+
+        // Debug.Log(OrderState);
         if (OrderState == 4 && toPlayOnTime == true)
         {
             playerInteraction.isMachineBroken = true;

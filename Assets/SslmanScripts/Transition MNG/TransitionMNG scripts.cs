@@ -3,7 +3,33 @@ using UnityEngine;
 public class TransitionMNGscripts : MonoBehaviour
 {
     [SerializeField] private GameObject Shift2;
+        [SerializeField] private GameObject Shift3;
+        [SerializeField] private AudioSource WhenShift3;
 
+    public static TransitionMNGscripts Instance;
+
+    //for meeting room transition------------
+    private int MugsOfTheMettingRoom=0;
+
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+
+    void Update()
+    {
+        if (MugsOfTheMettingRoom == 5)
+        {
+
+            Shift3.SetActive(false);
+            WhenShift3.enabled = false;
+
+        }
+
+
+    }
 
     public void TransitionToShift2()
     {
@@ -15,6 +41,12 @@ public class TransitionMNGscripts : MonoBehaviour
 
     }
 
+    public void TakeMug()
+    {
 
+
+        MugsOfTheMettingRoom++;
+
+    }
 
 }

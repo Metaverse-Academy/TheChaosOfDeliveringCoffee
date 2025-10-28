@@ -25,13 +25,18 @@ public class EventMNG : MonoBehaviour
     [SerializeField] private Animator MNGOfficeDoor;
     [SerializeField] private Animator MettingOfficeDoor;
 
-    
+
 
 
     //to be sure the event run one time 
-    bool IsSoundEvent =false;
+    bool IsSoundEvent = false;
     bool IsLightEvent = false;
+    bool IsMNGOfficeEvent = false;
 
+
+    void Start()
+    {
+    }
     void Update()
     {
 
@@ -44,59 +49,72 @@ public class EventMNG : MonoBehaviour
         else if (orderSys.OrderState == 6 && IsLightEvent == false)
         {
             IsLightEvent = true;
-           LightEvent();
+            LightEvent();
 
 
 
         }
-
-
-    }
-
-
-
-
-
-    void SoundEvent()
-    {
-        audioSource.PlayOneShot(SoundCallPlayer);
-
-    }
-    void LightEvent()
-    {
-        light.SetActive(false);
-        turnSoundOff();
-        ForPower.PlayOneShot(PowerOff);
-        Invoke("turnSoundOn" ,6);
-
-
-
-    }
-
-
-
-    void turnSoundOff()
-    {
-
-        foreach (var item in audios)
+        else if (orderSys.OrderState == 7 && IsMNGOfficeEvent == false)
         {
-            item.enabled = false;
+
+
+            MNGEvent();
+            IsMNGOfficeEvent = true;
 
         }
 
-    }
+
+}
+
+
+        void SoundEvent()
+        {
+            audioSource.PlayOneShot(SoundCallPlayer);
+
+        }
+        void LightEvent()
+        {
+            light.SetActive(false);
+            turnSoundOff();
+            ForPower.PlayOneShot(PowerOff);
+            Invoke("turnSoundOn", 6);
+
+
+
+        }
+
+
+
+        void turnSoundOff()
+        {
+
+            foreach (var item in audios)
+            {
+                item.enabled = false;
+
+            }
+
+        }
+
+        void turnSoundOn()
+        {
+            ForPower.PlayOneShot(PowerOn);
+
+            foreach (var item in audios)
+            {
+                item.enabled = true;
+
+            }
+
+            light.SetActive(true);
+
+        }
     
-     void turnSoundOn()
+    void MNGEvent()
     {
-        ForPower.PlayOneShot(PowerOn);
+        MNGOfficeDoor.SetTrigger("OpenManagerDoor");
+        MettingOfficeDoor.SetTrigger("OpenMettingRoom");
 
-        foreach (var item in audios)
-        {
-            item.enabled = true;
-
-        }
-
-        light.SetActive(true);
 
     }
 }

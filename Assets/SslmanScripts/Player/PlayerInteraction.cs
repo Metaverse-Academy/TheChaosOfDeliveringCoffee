@@ -43,6 +43,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private firstEventCoffeeMaker firstEventCoffeeMaker;
 
 
+    private MeetingRoomMugs meetingRoomMugs;
 
 
     [Header("References")]
@@ -77,7 +78,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-      
+        // Debug.Log(RecentTag);
 
 if (isInteracting)
         {
@@ -165,6 +166,21 @@ if (isInteracting)
 
             }
             else workerTable = null;
+
+ if (RecentTag == "MeetingRoomMug")
+            {
+
+                if (hit.collider.gameObject.GetComponent<MeetingRoomMugs>() != null)
+                {
+
+                    meetingRoomMugs = hit.collider.gameObject.GetComponent<MeetingRoomMugs>();
+                }
+
+            }
+            else workerTable = null;
+
+
+            //meetingRoomMugs
              if (RecentTag == "Worker")
             {
 
@@ -299,9 +315,19 @@ if (isInteracting)
 
             }
 
-
+          
         }
+  else if (RecentTag == "MeetingRoomMug" && IsPlayerHoldTheMug==false )
+            {
+            if (ctx.started)
+            {
 
+                Debug.Log("all good");
+                meetingRoomMugs.PlayerTakeTheMug();
+            }
+
+
+            }
         else if (RecentTag == "BTN" && IsCoffeMakerOn == true && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == false && PlayerPressBtn == false)
         {
             if (ctx.started)
@@ -361,7 +387,7 @@ if (isInteracting)
         else if (RecentTag == "BTN" && PlayerAfraid == true)
         {
 
-            
+
             if (ctx.started)
             {
                 Bottun.SetTrigger("BTN");
