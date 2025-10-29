@@ -38,12 +38,18 @@ public class EventMNG : MonoBehaviour
     bool IsWindowGuyAppear = false;
     [SerializeField] private GameObject TheWindowGuy;
 
-
+    public static EventMNG instance;
 
 
     //RedLight Event-----------------
     [SerializeField] GameObject Redlight;
         [SerializeField] private AudioSource RedAlert;
+
+    //RedLight Event-----------------
+    [SerializeField] private GameObject WallThatWillDisappear;
+    [SerializeField] private GameObject WallThatWillDisappear2;
+    [SerializeField] private GameObject WallThatWillAppear;
+
 
 
     //to be sure the event run one time 
@@ -52,7 +58,10 @@ public class EventMNG : MonoBehaviour
     bool IsMNGOfficeEvent = false;
     bool IsWindowKnockEvent = false;
         bool IsRedLightEvent=false;
-
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -240,4 +249,16 @@ public class EventMNG : MonoBehaviour
         RedAlert.enabled = false;
 
     }
+
+    public void finalEvent()
+    {
+
+        WallThatWillDisappear.SetActive(false);
+        WallThatWillDisappear2.SetActive(false);
+        WallThatWillAppear.SetActive(true);
+
+
+        
+    }
+
 }

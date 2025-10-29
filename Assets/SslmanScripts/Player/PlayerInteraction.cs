@@ -349,7 +349,7 @@ if (isInteracting)
 
 
 
-
+                EventMNG.instance.finalEvent();
 
 
                 //^---------------------^------------------^--------------------^
