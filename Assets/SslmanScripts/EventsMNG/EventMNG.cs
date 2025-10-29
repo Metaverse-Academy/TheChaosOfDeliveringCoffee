@@ -51,6 +51,13 @@ public class EventMNG : MonoBehaviour
     [SerializeField] private GameObject WallThatWillAppear;
 
 
+    [SerializeField] private AudioSource Audioss1;
+    [SerializeField] private AudioSource Audioss2;
+    [SerializeField] private AudioSource Audioss3;
+    [SerializeField] private AudioSource Audioss4;
+    [SerializeField] private AudioSource Audioss5;
+
+
 
     //to be sure the event run one time 
     bool IsSoundEvent = false;
@@ -257,6 +264,11 @@ public class EventMNG : MonoBehaviour
         WallThatWillDisappear2.SetActive(false);
         WallThatWillAppear.SetActive(true);
 
+        Audioss1.enabled = true;
+        Audioss2.enabled = true;
+        Audioss3.enabled = true;
+        Audioss4.enabled = true;
+        Audioss5.enabled = true;
 
         
     }

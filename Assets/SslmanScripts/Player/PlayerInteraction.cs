@@ -77,6 +77,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.2f;
     [SerializeField] private float scalePop = 1.1f;
     [SerializeField] private MugMNG mugMNG;
+
     private WorkerTable workerTable;
     //dialogue = di
     [SerializeField] GameObject di;
@@ -110,6 +111,7 @@ if (isInteracting)
             {
                 CompleteInteraction();
                 firealarmaudio.enabled = false;
+                stalkerWorker.SetActive(false);
             }
         }
 
@@ -316,7 +318,8 @@ if (isInteracting)
                 fixItemOnTheRoof.SetActive(false);
                 Debug.Log("Picked up the fix item");
                 stalkerWorker.SetActive(true);
-                Invoke("stalkerTalkToYou",1);
+                Invoke("stalkerTalkToYou", 1);
+                
             }
         }
         

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameDesign week2 Salman.unity
     guid: 0a51d4c8541332646933a2049548c4f5
   - enabled: 1
+    path: Assets/Scenes/Scene.unity
+    guid: af68f77a2d84c88449dc10eabde75fe0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: a2d8c643d25991f4da4ab872eda105ca
   m_configObjects:
