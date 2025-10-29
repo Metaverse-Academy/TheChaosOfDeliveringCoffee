@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EventMNG : MonoBehaviour
@@ -36,11 +37,22 @@ public class EventMNG : MonoBehaviour
 
     bool IsWindowGuyAppear = false;
     [SerializeField] private GameObject TheWindowGuy;
+
+
+
+
+    //RedLight Event-----------------
+    [SerializeField] GameObject Redlight;
+        [SerializeField] private AudioSource RedAlert;
+
+
     //to be sure the event run one time 
     bool IsSoundEvent = false;
     bool IsLightEvent = false;
     bool IsMNGOfficeEvent = false;
-    bool IsWindowKnockEvent=false;
+    bool IsWindowKnockEvent = false;
+        bool IsRedLightEvent=false;
+
 
     void Start()
     {
@@ -83,7 +95,11 @@ public class EventMNG : MonoBehaviour
 
         }
 
-
+        else if (orderSys.OrderState == 9 && IsRedLightEvent ==false)
+        {
+            IsRedLightEvent = true;
+            RedLightEvent();
+        }
 
         if (IsWindowGuyAppear == true)
         {
@@ -197,9 +213,29 @@ public class EventMNG : MonoBehaviour
     }
     void DisappearWindowGuy()
     {
-        
 
-                    TheWindowGuy.SetActive(false);
+
+        TheWindowGuy.SetActive(false);
+
+    }
+
+
+    void RedLightEvent()
+    {
+
+        light.SetActive(false);
+        Redlight.SetActive(true);
+        RedAlert.enabled = true;
+        Invoke("RedLightEventOff",7);
+
+    }
+
+    void RedLightEventOff()
+    {
+
+        light.SetActive(true);
+        Redlight.SetActive(false);
+        RedAlert.enabled = false;
 
     }
 }
