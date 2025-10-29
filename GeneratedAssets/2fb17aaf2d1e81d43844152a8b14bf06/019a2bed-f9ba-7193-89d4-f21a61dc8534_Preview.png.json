@@ -1,0 +1,11 @@
+{
+    "asset": "2fb17aaf2d1e81d43844152a8b14bf06",
+    "fileName": "019a2bed-f9ba-7193-89d4-f21a61dc8534_Preview.png",
+    "prompt": "Create smoke dark  in sphare material ",
+    "negativePrompt": "",
+    "model": "44ec3749-963a-44b1-aa54-dc19f6ed8ab2",
+    "modelName": "Unity Texture2D",
+    "customSeed": 939864778,
+    "w3CTraceId": "5a308bf85eefb200456e881834ff01a5",
+    "refinementMode": "Generation"
+}

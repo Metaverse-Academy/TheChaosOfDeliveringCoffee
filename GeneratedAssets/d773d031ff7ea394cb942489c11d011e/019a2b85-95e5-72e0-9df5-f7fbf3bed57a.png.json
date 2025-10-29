@@ -1,0 +1,20 @@
+{
+    "asset": "d773d031ff7ea394cb942489c11d011e",
+    "fileName": "019a2b85-95e5-72e0-9df5-f7fbf3bed57a.png",
+    "prompt": "Create me electric sparks that comes either from broken generator and electric applince ",
+    "negativePrompt": "",
+    "model": "5b5b2af1-6ea4-4266-b087-cc9f3bf4f450",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "33cbefc34f90891b63aca903a67ded9e",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}

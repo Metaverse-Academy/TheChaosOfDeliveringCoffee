@@ -1,0 +1,20 @@
+{
+    "asset": "5e8be517ab287114fb98d2301543d131",
+    "fileName": "019a2b95-367f-7b77-9d23-e6dc3153baae.png",
+    "prompt": "Single Spark Yellow like it coming out of electric wall make it single \n",
+    "negativePrompt": "",
+    "model": "5b5b2af1-6ea4-4266-b087-cc9f3bf4f450",
+    "modelName": "Flux.1 Dev",
+    "customSeed": -1,
+    "w3CTraceId": "ad0ef006259e20bf23c94992bef9c8aa",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}
