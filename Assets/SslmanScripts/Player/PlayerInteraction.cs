@@ -172,7 +172,14 @@ if (isInteracting)
 
 
             }
-  else if (RecentTag == "CoffeeMaker"&&isPlayerHoldFixItem ==true && isMachineBroken==true)
+            else if (RecentTag == "CoffeeMaker" && isPlayerHoldFixItem == true && isMachineBroken == true)
+            {
+
+                CenterDot.enabled = true;
+
+
+            }
+ else if (RecentTag == "MeetingRoomMug")
             {
                 
                 CenterDot.enabled = true;
