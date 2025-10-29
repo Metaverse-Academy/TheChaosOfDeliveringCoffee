@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         // Replace "GameScene" with the actual name of your gameplay scene
-        SceneManager.LoadScene("GameDesign (merge)");
+        SceneManager.LoadScene("GameDesign week2 Salman");
     }
 
     public void QuitGame()
