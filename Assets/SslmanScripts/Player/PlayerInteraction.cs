@@ -155,6 +155,9 @@ if (isInteracting)
             else CenterDot.enabled = false;
 
 
+
+
+
             if (RecentTag == "WorkerTable")
             {
 
@@ -162,12 +165,17 @@ if (isInteracting)
                 {
 
                     workerTable = hit.collider.gameObject.GetComponent<WorkerTable>();
+
                 }
 
-            }
-            else workerTable = null;
 
- if (RecentTag == "MeetingRoomMug")
+            }
+
+
+
+
+
+            else if (RecentTag == "MeetingRoomMug")
             {
 
                 if (hit.collider.gameObject.GetComponent<MeetingRoomMugs>() != null)
@@ -177,7 +185,10 @@ if (isInteracting)
                 }
 
             }
-            else workerTable = null;
+            else {
+                workerTable = null;
+            workerTable = null;
+            }
 
 
             //meetingRoomMugs
@@ -244,7 +255,7 @@ if (isInteracting)
 
 
         if (RecentTag == null) return;
-        if (RecentTag == "FixItem" && IsPlayerHoldTheMug == false &&PlayerAfraid==false &&isMachineBroken==true)
+        if (RecentTag == "FixItem" && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == true)
         {
             if (ctx.started)
             {
@@ -254,6 +265,9 @@ if (isInteracting)
                 Debug.Log("Picked up the fix item");
             }
         }
+        
+
+
         if (RecentTag == "CoffeeMaker" && isPlayerHoldFixItem == true && isCoffeNeedFixing == true&&PlayerAfraid==false&&isMachineBroken==true)
         {
             if (ctx.started)
@@ -315,10 +329,10 @@ if (isInteracting)
 
             }
 
-          
+
         }
-  else if (RecentTag == "MeetingRoomMug" && IsPlayerHoldTheMug==false )
-            {
+        else if (RecentTag == "MeetingRoomMug" && IsPlayerHoldTheMug == false)
+        {
             if (ctx.started)
             {
 
@@ -327,7 +341,7 @@ if (isInteracting)
             }
 
 
-            }
+        }
         else if (RecentTag == "BTN" && IsCoffeMakerOn == true && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == false && PlayerPressBtn == false)
         {
             if (ctx.started)
@@ -343,8 +357,10 @@ if (isInteracting)
 
             }
         }
+
         else if (RecentTag == "WorkerTable" && IsPlayerHoldTheMug == true && TheMugOfThePlayerIsFill == true && workerTable.TheTableReserved == false && PlayerAfraid == false && isMachineBroken == false)
         {
+
 
             workerTable.TheWorkerGetTheCoffee();
             mugMNG.activeMugOfPlayer(2);
@@ -356,6 +372,8 @@ if (isInteracting)
 
 
         }
+
+
         else if (RecentTag == "Worker")
         {
             di.SetActive(true);

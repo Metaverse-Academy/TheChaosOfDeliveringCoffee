@@ -13,7 +13,7 @@ public class OrderSys : MonoBehaviour
     public bool IsPlayerREadTheOrder;
     [SerializeField] private String[] orderDetail = new string[8];
     [SerializeField] private String[] nameOfTheWorkerMeth = new string[8];
-        [SerializeField] private BoxCollider[] OffceCollider = new BoxCollider[8];
+    [SerializeField] private BoxCollider[] OffceCollider = new BoxCollider[10];
 
 
     bool toPlayOnTime=true;
@@ -27,13 +27,12 @@ public class OrderSys : MonoBehaviour
         AddNewOrder(1);
             activeOnlyTheOne(0);
 
-
+        
 
     }
 
     void Update()
     {
-
         // Debug.Log(OrderState);
         if (OrderState == 4 && toPlayOnTime == true)
         {

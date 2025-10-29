@@ -1,11 +1,16 @@
+using Mono.Cecil;
 using UnityEngine;
 
 public class CameraRangeDetecetSys : MonoBehaviour
 {
     [SerializeField] private Camera MainCamera;
     [SerializeField] private GameObject Target;
-    private bool IsTargetvisible;
-
+    public bool IsTargetvisible;
+    public static CameraRangeDetecetSys instance;
+    void Awake()
+    {
+        instance = this;
+    }
     void Update()
     {
 
@@ -13,7 +18,7 @@ public class CameraRangeDetecetSys : MonoBehaviour
         bool IsTargetFrontOfCamera = cameraRange.z > 0;
         bool IsTargetInsideRange = cameraRange.x > 0 && cameraRange.x < 1 && cameraRange.y > 0 && cameraRange.y < 1;
 
-        IsTargetvisible = IsTargetFrontOfCamera && IsTargetInsideRange;
+        IsTargetvisible = IsTargetFrontOfCamera && IsTargetInsideRange &&Target.activeInHierarchy;
         if (IsTargetvisible)
         {
 

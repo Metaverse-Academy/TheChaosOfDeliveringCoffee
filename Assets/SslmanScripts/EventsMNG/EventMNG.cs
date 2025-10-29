@@ -21,21 +21,32 @@ public class EventMNG : MonoBehaviour
 
 
 
-    //MNGOfficeEvent
+    //MNGOffice Event-----------------
     [SerializeField] private Animator MNGOfficeDoor;
     [SerializeField] private Animator MettingOfficeDoor;
 
 
+    //WidnowKnock Event-----------------
+    [SerializeField] private Animator AppearAndDisapper;
+    [SerializeField] private Animator HankKnocks;
+    [SerializeField] private AudioSource audioSourceForKnock;
+    [SerializeField] private AudioClip Knocks;
+    [SerializeField] private AudioClip JumpScare;
+                float RecentTimeForWindowGuy;
 
-
+    bool IsWindowGuyAppear = false;
+    [SerializeField] private GameObject TheWindowGuy;
     //to be sure the event run one time 
     bool IsSoundEvent = false;
     bool IsLightEvent = false;
     bool IsMNGOfficeEvent = false;
-
+    bool IsWindowKnockEvent=false;
 
     void Start()
     {
+
+
+        
     }
     void Update()
     {
@@ -50,6 +61,7 @@ public class EventMNG : MonoBehaviour
         {
             IsLightEvent = true;
             LightEvent();
+            Invoke("MNGEvent", 10);
 
 
 
@@ -57,14 +69,58 @@ public class EventMNG : MonoBehaviour
         else if (orderSys.OrderState == 7 && IsMNGOfficeEvent == false)
         {
 
+            MettingOfficeDoor.SetTrigger("OpenMettingRoom");
 
-            MNGEvent();
             IsMNGOfficeEvent = true;
 
         }
 
+        else if (orderSys.OrderState == 8 && IsWindowKnockEvent == false)
+        {
+            TheWindowGuy.SetActive(true);
+            WindowEventAppear();
+            IsWindowKnockEvent = true;
 
-}
+        }
+
+
+
+        if (IsWindowGuyAppear == true)
+        {
+            Debug.Log(RecentTimeForWindowGuy);
+           if( CameraRangeDetecetSys.instance != null)
+            Debug.Log("sssss");
+           {
+                     if (CameraRangeDetecetSys.instance.IsTargetvisible == true)
+                     {
+                       audioSourceForKnock.PlayOneShot(JumpScare);
+                      Invoke("WindowEventDisAppear", 0.5f);
+                          IsWindowGuyAppear = false;
+
+                         }
+        }
+
+        if(CameraRangeDetecetSys.instance.IsTargetvisible == false)
+        {
+                RecentTimeForWindowGuy += Time.deltaTime;
+            
+            if (RecentTimeForWindowGuy > 2)
+            {
+                knockTheWindow();
+                RecentTimeForWindowGuy = 0;
+
+            }
+
+
+        }
+
+
+
+        }
+
+
+
+    }
 
 
         void SoundEvent()
@@ -109,12 +165,41 @@ public class EventMNG : MonoBehaviour
             light.SetActive(true);
 
         }
-    
+
     void MNGEvent()
     {
         MNGOfficeDoor.SetTrigger("OpenManagerDoor");
-        MettingOfficeDoor.SetTrigger("OpenMettingRoom");
 
+
+    }
+
+
+    void WindowEventAppear()
+    {
+        AppearAndDisapper.SetTrigger("StartEvent");
+        IsWindowGuyAppear = true;
+        Invoke("knockTheWindow",1);
+
+    }
+
+ void WindowEventDisAppear()
+    {
+        AppearAndDisapper.SetTrigger("EndEvent");
+        Invoke("DisappearWindowGuy",1.5f);
+    }
+
+    void knockTheWindow()
+    {
+
+        HankKnocks.SetTrigger("StartKnockEvent");
+        audioSourceForKnock.PlayOneShot(Knocks);
+
+    }
+    void DisappearWindowGuy()
+    {
+        
+
+                    TheWindowGuy.SetActive(false);
 
     }
 }
