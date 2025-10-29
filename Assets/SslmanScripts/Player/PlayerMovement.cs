@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
 
     [Header("Move")]
+    [SerializeField] private AudioSource footstep;
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float acceleration = 12f;
     [SerializeField] private float sprintSpeed = 9f;
@@ -47,7 +48,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update()
+
     {
+        if (moveInput.x != 0 || moveInput.y != 0)
+        {
+            footstep.enabled = true;
+
+        }
+        else footstep.enabled = false;
+
+
         Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
         isGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
     }

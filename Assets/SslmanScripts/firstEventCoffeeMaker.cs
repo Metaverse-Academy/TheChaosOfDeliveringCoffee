@@ -23,12 +23,10 @@ public class firstEventCoffeeMaker : MonoBehaviour
             toPlayOnTime = false;
             theCoffeeMakerAni.SetTrigger("AfterSecendOrder");
 
-            StartAfraid.enabled = true;
+            // StartAfraid.enabled = true;
             playerInteraction.PlayerAfraid = true;
+            coffeeSound.enabled = true;
 
-coffeeSound.loop = true;
-            coffeeSound.clip = coffeeMachineLoop;
-            coffeeSound.Play();
 
 
         }
@@ -43,6 +41,7 @@ coffeeSound.clip = coffeeMachineNormal;
         coffeeSound.loop = false;
 
         coffeeSound.Stop();
+            coffeeSound.enabled = false;
 
 
     }

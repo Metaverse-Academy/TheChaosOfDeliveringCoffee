@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class OrderSys : MonoBehaviour
 {
+
+
+    public static OrderSys instance;
+    [SerializeField] private AudioSource firealarmaudio;
+
     [SerializeField] private PlayerInteraction playerInteraction;
     [SerializeField] private TMP_Text theOrder;
     [SerializeField] private TMP_Text nameOfTheWorker;
@@ -16,12 +21,23 @@ public class OrderSys : MonoBehaviour
     [SerializeField] private BoxCollider[] OffceCollider = new BoxCollider[8];
 
 
+
+
+
+    //for coffee maker broken particals -------
+    [SerializeField] private GameObject smoke;
+        [SerializeField] private GameObject brokenEffect;
+
     bool toPlayOnTime=true;
     public int OrderState = 0;
 
     float RecentTime;
     int ChangeTheText = 1;
 
+    void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         AddNewOrder(1);
@@ -38,6 +54,11 @@ public class OrderSys : MonoBehaviour
         {
             playerInteraction.isMachineBroken = true;
             toPlayOnTime = false;
+            firealarmaudio.enabled = true;
+
+            brokenEffect.SetActive(true);
+            smoke.SetActive(true);
+
 
         }
 
@@ -109,6 +130,13 @@ public class OrderSys : MonoBehaviour
         OffceCollider[x].enabled = true;
 
 
+
+    }
+    public void CoffeeMakerFix()
+    {
+        
+ brokenEffect.SetActive(false);
+            smoke.SetActive(false);
 
     }
 }

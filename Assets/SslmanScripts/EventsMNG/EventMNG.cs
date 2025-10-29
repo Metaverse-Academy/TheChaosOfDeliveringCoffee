@@ -82,6 +82,8 @@ public class EventMNG : MonoBehaviour
         {
 
             MettingOfficeDoor.SetTrigger("OpenMettingRoom");
+            TransitionMNGscripts.Instance.setBlockActive();
+
 
             IsMNGOfficeEvent = true;
 

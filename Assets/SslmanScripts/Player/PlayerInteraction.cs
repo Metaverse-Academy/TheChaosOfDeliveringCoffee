@@ -32,7 +32,19 @@ public class PlayerInteraction : MonoBehaviour
     private int PressWhileAfraid=0;
 
 
+    [SerializeField] private AudioSource firealarmaudio;
 
+    [SerializeField] private AudioSource CoffeeMakerAudio;
+[SerializeField] private AudioClip CoffeeMakerSound;
+
+    [SerializeField] private AudioSource CoffeeMakerAudioLoop;
+
+    [SerializeField] private AudioSource drillAudioScurce;
+    [SerializeField] private AudioClip drillAudio;
+
+
+
+    [SerializeField] private GameObject fixItemOnTheRoof;
     [SerializeField] private Animator TheMugFill;
     [SerializeField] private TransitionMNGscripts transitionMNGscripts;
     [SerializeField] private Image CenterDot;
@@ -87,6 +99,7 @@ if (isInteracting)
             if (interactionTimer >= interactionTime)
             {
                 CompleteInteraction();
+                firealarmaudio.enabled = false;
             }
         }
 
@@ -123,7 +136,7 @@ if (isInteracting)
 
 
             }
- else if (RecentTag == "CoffeeMaker" && IsPlayerHoldTheMug == false &&IsCoffeFill==true)
+            else if (RecentTag == "CoffeeMaker" && IsPlayerHoldTheMug == false && IsCoffeFill == true)
             {
 
 
@@ -148,6 +161,20 @@ if (isInteracting)
             else if (RecentTag == "BTN" && IsCoffeMakerOn == true)
             {
 
+                CenterDot.enabled = true;
+
+
+            }
+            else if (RecentTag == "FixItem" && isPlayerHoldFixItem == false && isMachineBroken == true)
+            {
+
+                CenterDot.enabled = true;
+
+
+            }
+  else if (RecentTag == "CoffeeMaker"&&isPlayerHoldFixItem ==true && isMachineBroken==true)
+            {
+                
                 CenterDot.enabled = true;
 
 
@@ -261,8 +288,10 @@ if (isInteracting)
             {
                 fixItem.SetActive(true);
                 isPlayerHoldFixItem = true;
-                worker.gameObject.SetActive(true);
+                fixItemOnTheRoof.SetActive(false);
                 Debug.Log("Picked up the fix item");
+
+
             }
         }
         
@@ -272,7 +301,9 @@ if (isInteracting)
         {
             if (ctx.started)
             {
+                drillAudioScurce.PlayOneShot(drillAudio);
                 StartInteraction();
+                OrderSys.instance.CoffeeMakerFix();
             }
         }
 
@@ -346,6 +377,9 @@ if (isInteracting)
         {
             if (ctx.started)
             {
+
+
+                CoffeeMakerAudio.PlayOneShot(CoffeeMakerSound);
                 mugMNG.activeMugOfCoffeeMaker(3);
 
                 coffee.SetTrigger("OnBTNPress");

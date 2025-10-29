@@ -5,7 +5,7 @@ public class TransitionMNGscripts : MonoBehaviour
     [SerializeField] private GameObject Shift2;
         [SerializeField] private GameObject Shift3;
         [SerializeField] private AudioSource WhenShift3;
-
+        [SerializeField] private GameObject Block;
     public static TransitionMNGscripts Instance;
 
     //for meeting room transition------------
@@ -22,7 +22,7 @@ public class TransitionMNGscripts : MonoBehaviour
     {
         if (MugsOfTheMettingRoom == 5)
         {
-
+            Block.SetActive(false);
             Shift3.SetActive(false);
             WhenShift3.enabled = false;
 
@@ -48,5 +48,12 @@ public class TransitionMNGscripts : MonoBehaviour
         MugsOfTheMettingRoom++;
 
     }
+    public void setBlockActive()
+    {
+        
+            Block.SetActive(true);
 
+
+
+    }
 }
