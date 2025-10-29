@@ -31,7 +31,14 @@ public class PlayerInteraction : MonoBehaviour
 
     private int PressWhileAfraid=0;
 
+    [SerializeField] private GameObject stalkerDi;
 
+    [SerializeField] private GameObject ManagerDi;
+
+
+
+
+    [SerializeField] private GameObject stalkerWorker;
     [SerializeField] private AudioSource firealarmaudio;
 
     [SerializeField] private AudioSource CoffeeMakerAudio;
@@ -77,7 +84,8 @@ public class PlayerInteraction : MonoBehaviour
     private String RecentTag;
     private IInteractable currentTarget;
     private bool promptVisible;
-   private bool PlayerPressBtn =false;
+    private bool PlayerPressBtn = false;
+    bool enterDi = false;
     private void Awake()
     {
 
@@ -90,6 +98,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
+                    // Debug.Log(OrderSys.instance.OrderState);
+
         // Debug.Log(RecentTag);
 
 if (isInteracting)
@@ -286,9 +296,17 @@ if (isInteracting)
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
+        if (enterDi==true &&ctx.started)
+        {
+            ManagerDi.SetActive(false);
+            stalkerDi.SetActive(false);
+            gameObject.GetComponent<PlayerMovement>().enabled = true;
+            enterDi = false;
 
 
-        if (RecentTag == null) return;
+        }
+
+        if (RecentTag == null || enterDi==true) return;
         if (RecentTag == "FixItem" && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == true)
         {
             if (ctx.started)
@@ -297,8 +315,8 @@ if (isInteracting)
                 isPlayerHoldFixItem = true;
                 fixItemOnTheRoof.SetActive(false);
                 Debug.Log("Picked up the fix item");
-
-
+                stalkerWorker.SetActive(true);
+                Invoke("stalkerTalkToYou",1);
             }
         }
         
@@ -319,7 +337,28 @@ if (isInteracting)
 
         if (RecentTag == "coffeeTable" && IsPlayerHoldTheMug == false && PlayerAfraid == false && isMachineBroken == false)
         {
-            if (ctx.started && mugMNG.isThereAvailableCubs == true)
+            if (ctx.started && mugMNG.isThereAvailableCubs == true && OrderSys.instance.OrderState == 9)
+
+            {
+
+                mugMNG.checkIfThereAnyEmptyCup();
+                IsPlayerHoldTheMug = true;
+                mugMNG.activeMugOfPlayer(1);
+
+                // after this comment add the final event v --------------------
+
+
+
+
+
+
+                //^---------------------^------------------^--------------------^
+
+            }
+
+
+
+            else if (ctx.started && mugMNG.isThereAvailableCubs == true)
             {
 
                 mugMNG.checkIfThereAnyEmptyCup();
@@ -402,6 +441,7 @@ if (isInteracting)
         else if (RecentTag == "WorkerTable" && IsPlayerHoldTheMug == true && TheMugOfThePlayerIsFill == true && workerTable.TheTableReserved == false && PlayerAfraid == false && isMachineBroken == false)
         {
 
+          
 
             workerTable.TheWorkerGetTheCoffee();
             mugMNG.activeMugOfPlayer(2);
@@ -410,7 +450,13 @@ if (isInteracting)
 
             CoffeStateAni.SetBool("TheMugOfThePlayerIsFill", TheMugOfThePlayerIsFill);
 
-
+            if (ctx.started&&OrderSys.instance.OrderState == 7)
+            {
+                Debug.Log("abrm");
+ManagerDi.SetActive(true);
+                enterDi = true;
+                            gameObject.GetComponent<PlayerMovement>().enabled = false;
+            }
 
         }
 
@@ -506,6 +552,12 @@ private void StartInteraction()
     {
         SceneManager.LoadScene("MainMenu");
     }
+    void stalkerTalkToYou()
+    {
+        stalkerDi.SetActive(true);
+ enterDi = true;
+                            gameObject.GetComponent<PlayerMovement>().enabled = false;
 
+    }
 
 }

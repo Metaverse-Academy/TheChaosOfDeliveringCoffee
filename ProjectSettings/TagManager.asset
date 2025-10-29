@@ -15,6 +15,7 @@ TagManager:
   - Final Worker
   - FinalWorkers
   - MeetingRoomMug
+  - Stalker
   layers:
   - Default
   - TransparentFX
