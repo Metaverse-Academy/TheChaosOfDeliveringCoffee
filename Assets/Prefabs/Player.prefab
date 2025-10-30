@@ -691,6 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   cameraTransform: {fileID: 7016592678769815784}
+  footstep: {fileID: 0}
   walkSpeed: 5
   acceleration: 12
   sprintSpeed: 9
@@ -719,9 +720,25 @@ MonoBehaviour:
   loadingBoxUI: {fileID: 0}
   loadingProgressBar: {fileID: 0}
   fixItem: {fileID: 0}
+  PlayerAfraid: 0
+  isMachineBroken: 0
+  stalkerDi: {fileID: 0}
+  ManagerDi: {fileID: 0}
+  stalkerWorker: {fileID: 0}
+  firealarmaudio: {fileID: 0}
+  CoffeeMakerAudio: {fileID: 0}
+  CoffeeMakerSound: {fileID: 0}
+  CoffeeMakerAudioLoop: {fileID: 0}
+  drillAudioScurce: {fileID: 0}
+  drillAudio: {fileID: 0}
+  fixItemOnTheRoof: {fileID: 0}
+  TheMugFill: {fileID: 0}
+  transitionMNGscripts: {fileID: 0}
+  CenterDot: {fileID: 0}
   coffee: {fileID: 0}
   Bottun: {fileID: 0}
   CoffeStateAni: {fileID: 7722985437399704196}
+  firstEventCoffeeMaker: {fileID: 0}
   cameraTransform: {fileID: 7016592678769815784}
   promptCanvas: {fileID: 0}
   promptText: {fileID: 0}
@@ -733,6 +750,8 @@ MonoBehaviour:
   fadeDuration: 0.2
   scalePop: 1.1
   mugMNG: {fileID: 0}
+  di: {fileID: 0}
+  worker: {fileID: 0}
 --- !u!1 &7734783064302656123
 GameObject:
   m_ObjectHideFlags: 0

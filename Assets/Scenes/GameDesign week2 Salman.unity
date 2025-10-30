@@ -44829,7 +44829,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.741, y: -0.9322, z: 4.27283}
-  m_LocalScale: {x: 29.504322, y: -19.809725, z: 1}
+  m_LocalScale: {x: 42.17938, y: -19.809725, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -52640,10 +52640,42 @@ PrefabInstance:
       propertyPath: firstEventCoffeeMaker
       value: 
       objectReference: {fileID: 1990585621}
+    - target: {fileID: 4566780603082994757, guid: f35845eb9045a4345a7797b95cd4ae0d, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5797396056753542765, guid: f35845eb9045a4345a7797b95cd4ae0d, type: 3}
       propertyPath: footstep
       value: 
       objectReference: {fileID: 991340854}
+    - target: {fileID: 5797396056753542765, guid: f35845eb9045a4345a7797b95cd4ae0d, type: 3}
+      propertyPath: walkSpeed
+      value: 3.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904455865199778274, guid: f35845eb9045a4345a7797b95cd4ae0d, type: 3}
+      propertyPath: ScanRecursively
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904455865199778274, guid: f35845eb9045a4345a7797b95cd4ae0d, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[1].Input.Gain
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904455865199778274, guid: f35845eb9045a4345a7797b95cd4ae0d, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[0].Driver.AccelTime
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904455865199778274, guid: f35845eb9045a4345a7797b95cd4ae0d, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[0].Driver.DecelTime
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904455865199778274, guid: f35845eb9045a4345a7797b95cd4ae0d, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[1].Driver.AccelTime
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904455865199778274, guid: f35845eb9045a4345a7797b95cd4ae0d, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[1].Driver.DecelTime
+      value: 0.33
+      objectReference: {fileID: 0}
     - target: {fileID: 6949511775169908635, guid: f35845eb9045a4345a7797b95cd4ae0d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -491890,7 +491922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58209b63866d1b24eae23c821cec002f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.6915
+      value: -7.545
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 58209b63866d1b24eae23c821cec002f, type: 3}
       propertyPath: m_LocalRotation.w
