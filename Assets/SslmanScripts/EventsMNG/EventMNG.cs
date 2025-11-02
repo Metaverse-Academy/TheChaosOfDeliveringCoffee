@@ -7,6 +7,8 @@ public class EventMNG : MonoBehaviour
     //sound event---------------------
     [SerializeField] OrderSys orderSys;
     [SerializeField] AudioSource audioSource;
+        [SerializeField] AudioSource audioSourceMusic;
+
     [SerializeField] AudioClip SoundCallPlayer;
 
 
@@ -147,9 +149,7 @@ public class EventMNG : MonoBehaviour
 
 
         }
-
-
-
+              
         }
 
 

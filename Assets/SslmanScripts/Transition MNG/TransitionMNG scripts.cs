@@ -4,7 +4,9 @@ public class TransitionMNGscripts : MonoBehaviour
 {
     [SerializeField] private GameObject Shift2;
         [SerializeField] private GameObject Shift3;
-        [SerializeField] private AudioSource WhenShift3;
+    [SerializeField] private AudioSource WhenShift3;
+    [SerializeField] AudioSource audioSourceMusic;
+
         [SerializeField] private GameObject Block;
     public static TransitionMNGscripts Instance;
 
@@ -34,7 +36,7 @@ public class TransitionMNGscripts : MonoBehaviour
     public void TransitionToShift2()
     {
 
-
+        audioSourceMusic.enabled = false;
         Shift2.SetActive(true);
 
 

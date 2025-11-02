@@ -4,7 +4,6 @@ using TMPro;
 using UnityEditor;
 using System;
 using UnityEngine.UI;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class PlayerInteraction : MonoBehaviour
